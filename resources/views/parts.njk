@@ -1,0 +1,96 @@
+{% extends "layout" %}
+
+{% block content%}
+<div id="wrapper">
+    <div class="container">
+        {% if not currentUser %}
+        <div class="text-center"><h1>Kérem jelentkezzen be!</h1></div>
+        {% else %}
+        <div class="row">
+            {% for category in categories %}
+                
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Kiválaszott {{ category.name }}
+                            <span class="pull-right"> <!-- <a href="#"><i class="fa fa-plus fa-lg" style="color:green" data-toggle="modal" data-target="#addTodo"></i></a>  -->  </span></div>
+                        <div class="panel-body" style="max-height:150px; min-height:150px; overflow-y: scroll;">
+                            {% for part in category.allParts %}
+                                {% if part.user_id == currentUser.id %}
+                                <li style="list-style:none;">{{ part.title }}
+                                    <span class="pull-right"> <!-- <a href="/editAlk/{{todo.id}}"><i class="glyphicon glyphicon-pencil" style="padding-left:10px"></i></a>  -->
+                                                             <a href="/deletePart/{{part.id}}"><i class="glyphicon glyphicon-trash" style="padding-left:10px;"></i></a></span>  
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="panel-footer">
+                            <a href="/alk/{{category.id}}"><button type="submit" class="btn btn-danger">Alkatrész választása</button></a>
+                            <!--  <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#editCategory">Edit Category Name  -->
+                            <!--  <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#editCategory">Másik alkatrész választása</button> -->
+
+                            <div class="modal fade" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="editCategoryLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="editCategoryLabel">Change category name</h4>
+                                </div>
+                                    <form role="form" method="POST" action="/editCategory/{{category.id}}">
+                                        <div class="modal-body" style="min-height:150px; max-height:150px;">
+                                            {{ csrfField }}
+                                            <div class="form-group">
+                                                <label for="name" class="control-label padding-bottom-5">Category</label>
+                                                <input type="text" class="form-control col-xs-6" id="name" name="name" placeholder="Category name" value="{{ category.name }}">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-success" type="submit" style="color:black">Save new category name</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="modal fade" id="addTodo" tabindex="-1" role="dialog" aria-labelledby="addTodoLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="addTodoLabel">Új alkatrész hozzáadása</h4>
+                                </div>
+                                    <form class="form-horizontal" role="form" method="POST" action="createAlk">
+                                            {{ csrfField }}
+                                            <div class="modal-body" style="min-height:150px; max-height:150px;">
+                                            <div class="form-group">
+                                                <label for="title" class="col-xs-3 control-label padding-bottom-5">Alkatrész neve</label>
+                                                <div class=" col-xs-6">
+                                                    <input type="text" class="form-control" id="title" name="title" placeholder="Alkatrész neve" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="category_id" class="col-xs-3 control-label">Category <i style="color:red">*</i></label>
+                                                <div class="col-xs-6">
+                                                    <select class="form-control" id="category_id" name="category_id">
+                                                        {% if category.user_id == currentUser.id %}
+                                                        <option value="{{ category.id }}" selected>{{ category.name}}</option>
+                                                        {% endif %}  
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-success" type="submit" style="color:black">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

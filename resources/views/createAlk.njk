@@ -1,0 +1,75 @@
+{% extends "layout"%}
+{% block content %}
+<div id="wrapper">
+    <div class="container">
+        {% if not currentUser %}
+        <div class="text-center"><h1>Kérem jelentkezzen be!</h1></div>
+        {% else %}
+        <h2> Új alkatrész az oldalra </h2>
+        {% if old('errors') %}
+        <div class="panel panel-danger">
+            <div class="panel-heading">Errors</div>
+            <div class="panel-body">
+                <ul>
+                    {% for error in old('errors') %}
+                    <li>{{ error.message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <p class="text-center">Új kategória adható</p>
+            <form class="form-horizontal" role="form" method="POST" action="/addCategory">
+                {{ csrfField }}
+                <fieldset>
+                    <div class="form-group">
+                        <label for="name" class="col-xs-3 control-label">Kategória</label>
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Kategória" value="{{old('name')}}" required>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">Hozzáad </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <form class="form-horizontal" role="form" method="POST" action="/createAlk">
+                {{ csrfField }}
+                <fieldset>
+                    <div class="form-group">
+                    <label for="title"  class="col-xs-3 control-label">Alkatrész neve <i style="color:red">*</i></label>
+                        <div class="col-xs-6">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Alkatrész neve" value="{{old('title')}}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <label for="category_id" class="col-xs-3 control-label">Kategória <i style="color:red">*</i></label>
+                        <div class="col-xs-6">
+                            <select class="form-control" id="category_id" name="category_id" required>
+                            {% for category in categories %}
+                                {% if category.user_id == currentUser.id %}
+                                <option value="{{ category.id }}" {% if category.id == old('category_id') %} selected {% endif %} >
+                                    {{ category.name}}</option>
+                                {% endif %}  
+                            {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+                            <button type="submit" class="btn btn-primary">Felvétel</button>
+                             <a href="/alk"><button type="button" class="btn btn-default">Vissza</button></a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

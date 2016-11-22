@@ -1,0 +1,49 @@
+{% extends "layout"%}
+{% block content %}
+<div id="wrapper">
+    <div class="container">
+        {% if not currentUser %}
+        <div class="text-center"><h1>Kérem jelentkezzen be!</h1></div>
+        {% else %}
+        <h2> Alkatrésznév változtatás </h2>
+        {% if todo.user_id == currentUser.id %}
+        <div class="col-xs-12">
+            <form class="form-horizontal" role="form" method="POST" action="">
+                {{ csrfField }}
+                <fieldset>
+                    <div class="form-group">
+                    <label for="title"  class="col-xs-3 control-label">Alkatrész neve</label>
+                        <div class="col-xs-6">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Alkatrész neve" value="{{ todo.title }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <label for="category_id" class="col-xs-3 control-label">Category</label>
+                        <div class="col-xs-6">
+                            <select class="form-control" id="category_id" name="category_id">
+                            {% for category in categories %}
+                                <!--{% if todo.category.user_id == currentUser.id %}-->
+                                <option value="{{ category.id }}" 
+                                {% if category.id == old('category_id') %} selected {% endif %}>
+                                    {{ category.name }}</option>
+                                <!--{% endif %}  -->
+                            {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                            <a href="/alk"><button type="button" class="btn btn-default">Cancel</button></a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        {% else %}
+        <div class="text-center"><h3>Nincs ilyen alaktrész</h1></div>
+        {% endif %}
+        {% endif %}
+        </div>
+        </div>
+{% endblock %}
