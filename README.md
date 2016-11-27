@@ -29,7 +29,6 @@ Bejelentkezett felhasználó: A publikus oldalak elérésén felül egyéb funkc
 *Meglévő alkatrész a kiv. listáról törlése
  
  ![GitHub Logo](/images/use_case.png)
-Format: ![Alt Text](url)
 
 Vegyünk példának egy egyszerű folyamatot:
 
@@ -46,7 +45,6 @@ Submit gombra kattintva elmenti a változásokat
 
 ### Oldaltérkép
 ![GitHub Logo](/images/Oldaltérkép.png)
-Format: ![Alt Text](url)
 
 ### Végpontok
 GET/főoldal
@@ -71,32 +69,24 @@ GET/deletePart/:id
 
 ### Felhasználói felület
 
- ![GitHub Logo](/images/alk1-3.png)
-Format: ![Alt Text](url)
+ ![GitHub Logo](/images/Alk1-3.png)
 
  ![GitHub Logo](/images/alk1.png)
-Format: ![Alt Text](url)
 
- ![GitHub Logo](/images/alk1-1.png)
-Format: ![Alt Text](url)
+ ![GitHub Logo](/images/Alk1-1.png)
 
  ![GitHub Logo](/images/alk2.png)
-Format: ![Alt Text](url)
 
- ![GitHub Logo](/images/alk1-2.png)
-Format: ![Alt Text](url)
+ ![GitHub Logo](/images/Alk1-2.png)
 
  ![GitHub Logo](/images/alk3.png)
-Format: ![Alt Text](url)
 
  ![GitHub Logo](/images/alk5.png)
-Format: ![Alt Text](url)
 
 
 ### Adatmodell
 
  ![GitHub Logo](/images/adatmodell.png)
-Format: ![Alt Text](url)
 
 ## Implementáció
 
@@ -113,12 +103,9 @@ Webes IDE: GitHub
 
 
  ![GitHub Logo](/images/k1.png)
-Format: ![Alt Text](url)
 Folytatás:
  ![GitHub Logo](/images/k2.png)
-Format: ![Alt Text](url)
 Folytatás:
  ![GitHub Logo](/images/k3.png)
-Format: ![Alt Text](url)
   
   (a többi specifikációt a repo. bead1 mappa tárolja)
