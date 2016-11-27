@@ -37,6 +37,7 @@ class AlkController {
         response.redirect('/alk');
     }
 
+   
     * addCategory(request,response){
         const categoryData = request.except('_csrf');
         const rules = {
@@ -190,10 +191,36 @@ class AlkController {
             }
         }
 
-        
-
         response.redirect('/parts');
     }
+
+
+     * search(request, response){
+         var q = request.input('title') || '';
+         //var page = request.input('page') || 1;
+         
+          var parts = yield Todo.query().where(function() {
+                        if(q!==''){
+                            this.where('title','LIKE', '%'+q+'%')
+                        }
+                        else{
+                            response.redirect('/alk');
+                        }
+                    }).with('category').fetch()
+            //.paginate(page, 2)
+         
+         console.log(parts.toJSON());
+
+          var c_id = parts.category_id;
+          var category = Category.find(c_id);
+
+          
+         yield response.sendView('search', {
+                //category: category.toJSON(),
+                parts: parts.toJSON()                
+         });
+     }
+
 }
 
 module.exports = AlkController

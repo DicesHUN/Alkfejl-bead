@@ -1,0 +1,34 @@
+{% extends "layout" %}
+
+{% block content%}
+<div id="wrapper">
+    <div class="container">
+        {% if not currentUser %}
+        <div class="text-center"><h1>Kérem jelentkezzen be!</h1></div>
+        {% else %}
+        <div class="row">
+                
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">A keresés eredménye:
+                            <span class="pull-right"> <!-- <a href="#"><i class="fa fa-plus fa-lg" style="color:yellow" data-toggle="modal" data-target="#addTodo"></i></a>  -->  </span></div>
+                        <div class="panel-body" style="max-height:150px; min-height:150px; overflow-y: scroll;">
+                            {% for part in parts %}
+                                
+                                <li style="list-style:none;">{{ part.title }}
+                                     <span class="pull-right"><a href="/addPart/{{part.id}}"><i class="fa fa-plus fa-lg" style="color:green" data-toggle="modal" data-target="#addPart"></i></a>
+                                                          <!-- <a href="/deleteAlk/{{part.id}}"><i class="glyphicon glyphicon-trash" style="padding-left:10px;"></i></a></span> -->
+                                </li>
+                            {% endfor %}
+                        </div>
+                        <div class="panel-footer">
+                            <a href="/parts"><button type="button" class="btn btn-danger">Vissza az összeállításomhoz<i class="" style="padding-left:10px"></i></button></a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
