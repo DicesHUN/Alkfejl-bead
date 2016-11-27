@@ -47,25 +47,25 @@ Submit gombra kattintva elmenti a változásokat
 ![GitHub Logo](/images/Oldaltérkép.png)
 
 ### Végpontok
-GET/főoldal
-GET/loginSignUp
-POST/login
-POST/register
-GET/logout
-GET/alk
-GET/parts
-GET/alk/:id
-GET/addPart/:id
-GET/search
-//POST/addCategory  "moderátori" eléréssel (kódban engedélyezni kell)
-GET/createAlk
-POST/createAlk
-GET/editAlk/:id
-POST/editAlk/:id
-//POST/editCategory/:id   "moderátori" eléréssel (kódban engedélyezni kell)
-//GET/deleteAlk/:id       "moderátori" eléréssel (kódban engedélyezni kell)
-GET/deletePart/:id
-//GET/deleteCategory/:id  "moderátori" eléréssel (kódban engedélyezni kell)
+*GET/főoldal
+*GET/loginSignUp
+*POST/login
+*POST/register
+*GET/logout
+*GET/alk
+*GET/parts
+*GET/alk/:id
+*GET/addPart/:id
+*GET/search
+*//POST/addCategory  "moderátori" eléréssel (kódban engedélyezni kell)
+*GET/createAlk
+*POST/createAlk
+*GET/editAlk/:id
+*POST/editAlk/:id
+*//POST/editCategory/:id   "moderátori" eléréssel (kódban engedélyezni kell)
+*//GET/deleteAlk/:id       "moderátori" eléréssel (kódban engedélyezni kell)
+*GET/deletePart/:id
+*//GET/deleteCategory/:id  "moderátori" eléréssel (kódban engedélyezni kell)
 
 ### Felhasználói felület
 
