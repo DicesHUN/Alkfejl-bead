@@ -19,14 +19,15 @@
 
 Vendég: Csak a publikus oldalakat éri el
 
-*Bejelentkezés
-*Regisztráció
+-Bejelentkezés
+-Regisztráció
+
 Bejelentkezett felhasználó: A publikus oldalak elérésén felül egyéb funkciókhoz is hozzáfér.
 
-*Alkatrészek listájának megtekintése
-*Új alkatrész felvétele az oldal alkatrészeihez
-*Összeállított alkatrészek listájának megtekintése / módosítása
-*Meglévő alkatrész a kiv. listáról törlése
+-Alkatrészek listájának megtekintése
+-Új alkatrész felvétele az oldal alkatrészeihez
+-Összeállított alkatrészek listájának megtekintése / módosítása
+-Meglévő alkatrész a kiv. listáról törlése
  
  ![GitHub Logo](/images/use_case.png)
 
@@ -47,25 +48,25 @@ Submit gombra kattintva elmenti a változásokat
 ![GitHub Logo](/images/Oldaltérkép.png)
 
 ### Végpontok
-*GET/főoldal
-*GET/loginSignUp
-*POST/login
-*POST/register
-*GET/logout
-*GET/alk
-*GET/parts
-*GET/alk/:id
-*GET/addPart/:id
-*GET/search
-*//POST/addCategory  "moderátori" eléréssel (kódban engedélyezni kell)
-*GET/createAlk
-*POST/createAlk
-*GET/editAlk/:id
-*POST/editAlk/:id
-*//POST/editCategory/:id   "moderátori" eléréssel (kódban engedélyezni kell)
-*//GET/deleteAlk/:id       "moderátori" eléréssel (kódban engedélyezni kell)
-*GET/deletePart/:id
-*//GET/deleteCategory/:id  "moderátori" eléréssel (kódban engedélyezni kell)
+1.GET/főoldal
+2.GET/loginSignUp
+3.POST/login
+4.POST/register
+5.GET/logout
+6.GET/alk
+7.GET/parts
+8.GET/alk/:id
+9.GET/addPart/:id
+10.GET/search
+11.POST/addCategory  "moderátori" eléréssel (kódban engedélyezni kell)
+12.GET/createAlk
+13.POST/createAlk
+14.GET/editAlk/:id
+15.POST/editAlk/:id
+16.POST/editCategory/:id   "moderátori" eléréssel (kódban engedélyezni kell)
+17.GET/deleteAlk/:id       "moderátori" eléréssel (kódban engedélyezni kell)
+18.GET/deletePart/:id
+19.GET/deleteCategory/:id  "moderátori" eléréssel (kódban engedélyezni kell)
 
 ### Felhasználói felület
 
