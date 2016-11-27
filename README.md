@@ -69,15 +69,15 @@ GET/deletePart/:id
 
 ### Felhasználói felület
 
- ![GitHub Logo](/images/Alk1-3.png)
+ ![GitHub Logo](/images/Alk1-3.PNG)
 
  ![GitHub Logo](/images/alk1.png)
 
- ![GitHub Logo](/images/Alk1-1.png)
+ ![GitHub Logo](/images/Alk1-1.PNG)
 
  ![GitHub Logo](/images/alk2.png)
 
- ![GitHub Logo](/images/Alk1-2.png)
+ ![GitHub Logo](/images/Alk1-2.PNG)
 
  ![GitHub Logo](/images/alk3.png)
 
