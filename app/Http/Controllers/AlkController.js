@@ -117,7 +117,7 @@ class AlkController {
     * deleteCategory(request,response){
         const id = request.param('id');
         const category = yield Category.find(id);
-        const todos = yield category.todos().fetch();
+        const todos = yield category.alks().fetch();
         
         yield category.delete();
         response.redirect('/alk');
@@ -329,7 +329,7 @@ class AlkController {
          var todos = yield Todo.query()
          .where(function () {
              this.where('title','LIKE', '%'+query+'%')
-         });
+         }).with('category').fetch()
  
          response.ok(todos);
      }

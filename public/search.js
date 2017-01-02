@@ -7,7 +7,7 @@ $(function(){
              let html='';
              for(let i=0;i<result.length;i++){
                  const todos = result[i];
-                 html+='<a class="list-group-item" href="/search?title='+todos.name+'">'+todos.name+'</a>';
+                 html+='<a class="list-group-item" href="/alk/'+todos.id+'">'+todos.name+'</a>';
              }
              
  
