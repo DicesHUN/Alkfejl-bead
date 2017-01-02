@@ -10,38 +10,45 @@
             {% for category in categories %}
                
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" id="todosPanel">
                         <div class="panel-heading">{{ category.name }}
                             <span class="pull-right"></span>
                         </div>
                         <div class="panel-body" style="max-height:150px; min-height:150px; overflow-y: scroll;">
                             {% for todo in category.allTodos %}
                                 
-                                <li style="list-style:none;">{{ todo.title }}
-                                                            <span class="pull-right"><a href="/editAlk/{{todo.id}}"><i class="glyphicon glyphicon-pencil" style="color:blue" data-toggle="modal" data-target="#addTodo" style="padding-left:10px"></i></a>
-                                                             <!-- <a href="/deleteAlk/{{todo.id}}"><i class="glyphicon glyphicon-trash" style="padding-left:10px;"></i></a></span> -->
+                                <li style="list-style:none;" class="smart-todo">{{ todo.title }}
+                                            <span class="pull-right"><a href="/editAlk/{{todo.id}}"  class="smart-todo"><i class="glyphicon glyphicon-pencil" style="color:blue" style="padding-left:10px"></i></a>
+                                            <a href="/deleteAlk/{{todo.id}}" id="deleteTodo{{todo.id}}" onclick="deleteTodo({{todo.id}})"><i class="glyphicon glyphicon-trash" style="padding-left:10px;"></i></a></span>
                                 </li>
                                 
                             {% endfor %}
                         </div>
                         <div class="panel-footer">
+
+
+                            <a href="/deleteCategory/{{category.id}}" id="deleteCategory{{category.id}}" onclick="deleteCategory({{category.id}})" class="btn btn-danger">Kategória törlése<i class="glyphicon glyphicon-trash" style="padding-left:10px"></i></a>
+                              <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#editCategory">Kategórianév módosítása
+                                  <i class="glyphicon glyphicon-pencil" style="padding-left:10px"></i>
+                              </button>
+
                             <div class="modal fade" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="editCategoryLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="editCategoryLabel">Change category name</h4>
+                                    <h4 class="modal-title" id="editCategoryLabel">Változtasd meg a kategória nevét</h4>
                                 </div>
                                     <form role="form" method="POST" action="/editCategory/{{category.id}}">
                                         <div class="modal-body" style="min-height:150px; max-height:150px;">
                                             {{ csrfField }}
                                             <div class="form-group">
-                                                <label for="name" class="control-label padding-bottom-5">Category</label>
-                                                <input type="text" class="form-control col-xs-6" id="name" name="name" placeholder="Category name" value="{{ category.name }}">
+                                                <label for="name" class="control-label padding-bottom-5">Kategória</label>
+                                                <input type="text" class="form-control col-xs-6" id="name" name="name" placeholder="Kategórianév" value="{{ category.name }}" required>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-success" type="submit" style="color:black">Save new category name</button>
+                                            <button class="btn btn-success" type="submit" style="color:white">Kategórianév mentése</button>
                                         </div>
                                     </form>
                                 </div>
@@ -49,43 +56,26 @@
                             </div>
                             </div>
                     </div>
-                    <!-- <div class="modal fade" id="addTodo" tabindex="-1" role="dialog" aria-labelledby="addTodoLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="addTodoLabel">Alkatrész hozzáadása</h4>
-                                </div>
-                                    <form class="form-horizontal" role="form" method="POST" action="createAlk">
-                                            {{ csrfField }}
-                                            <div class="modal-body" style="min-height:150px; max-height:150px;">
-                                            <div class="form-group">
-                                                <label for="title" class="col-xs-3 control-label padding-bottom-5">Alkatrész neve</label>
-                                                <div class=" col-xs-6">
-                                                    <input type="text" class="form-control" id="title" name="title" placeholder="Alkatrész neve" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                            <label for="category_id" class="col-xs-3 control-label">Category <i style="color:red">*</i></label>
-                                                <div class="col-xs-6">
-                                                    <select class="form-control" id="category_id" name="category_id">
-                                                        {% if category.user_id == currentUser.id %}
-                                                        <option value="{{ category.id }}" selected>{{ category.name}}</option>
-                                                        {% endif %}  
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-success" type="submit" style="color:black">Save</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            </div> -->
+                    
                 </div>
                 
             {% endfor %}
+
+            <span class="help-block"></span>
+                 <div class="modal fade confirm-modal" tabindex="-1" role="dialog">
+                     <div class="modal-dialog modal-sm" role="document">
+                         <div class="modal-content">
+                         <div class="modal-body">
+                             Biztosan törölni fogod?
+                         </div>
+                         <div class="modal-footer">
+                             <button type="button" class="btn btn-success modal-ok" data-dismiss="modal">OK</button>
+                             <button type="button" class="btn btn-danger modal-cancel" data-dismiss="modal">Vissza</button>
+                         </div>
+                         </div>
+                     </div>
+                 </div>
+
         </div>
         {% endif %}
     </div>

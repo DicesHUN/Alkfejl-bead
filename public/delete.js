@@ -1,22 +1,32 @@
-$(document).ready(function() {
-	// get current URL path and assign 'active' class
-	var pathname = window.location.pathname;
-	$('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
-})
-
 function deleteTodo(id){
      this.event.preventDefault();
      const $todoToDelete = $('#deleteTodo'+id);
      console.log($todoToDelete);
      deleteItem($todoToDelete);
  }
-
+ 
  function deleteCategory(id){
      this.event.preventDefault();
      const $categoryToDelete = $('#deleteCategory' + id);
      deleteItem($categoryToDelete);
  }
-
+ 
+ function deleteItem(item){
+     confirmDelete('Are you sure you want to delete the item?')
+         .then(response => {
+             if(response){
+             const url = '/ajax' + item.attr('href');
+             ajaxDelete(url)
+                 .then(data =>{
+                     location.reload()
+                 })
+                 .catch(xhr =>{
+                    $('.help-block').text(xhr.responeText);
+                 })
+             }
+         })
+ }
+ 
  function editTodo(id) {
      const $title = $('#title');
      const $category_id = $('#category_id');
@@ -28,11 +38,11 @@ function deleteTodo(id){
          editCreateItem(id,'editTodo','/todos', data)
      }else{
          this.event.preventDefault();
-         $('.help-block').text('Title or category is empty, or you have not typed enough characters');
-     }
- }
+        $('.help-block').text('Title or category is empty, or you have not typed enough characters');
+    }
+}
 
- function createTodo(){
+function createTodo(){
      const $title = $('#title');
      const $category_id = $('#category_id')
      var data = {};
@@ -45,7 +55,7 @@ function deleteTodo(id){
          $('.help-block').text('Title or category is empty, or you have not typed enough characters');
      }
  }
-
+ 
  function createItem(item, location, data){
      this.event.preventDefault();
      const headers = {
@@ -65,7 +75,7 @@ function deleteTodo(id){
          }
      });
  }
-
+ 
  function editItem(id, item, location, data){
      this.event.preventDefault();
      const headers = {
@@ -85,7 +95,8 @@ function deleteTodo(id){
          }
      });
  }
-
+ 
+ 
  function ajaxDelete(url) {
    const headers = {
      'csrf-token': $('[name="_csrf"]').val()
@@ -99,7 +110,7 @@ function deleteTodo(id){
      })
    )
  }
-
+ 
  function confirmDelete(str){
      let _resolve, _reject;
      const $modal = $('.confirm-modal');
