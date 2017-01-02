@@ -6,7 +6,7 @@
         <div class="text-center"><h1>Kérem jelentkezzen be!</h1></div>
         {% else %}
         <h2> Alkatrésznév változtatás </h2>
-        {% if todo.user_id == currentUser.id %}
+        
         <div class="col-xs-12">
             <form class="form-horizontal" role="form" method="POST" action="">
                 {{ csrfField }}
@@ -15,19 +15,21 @@
                     <label for="title"  class="col-xs-3 control-label">Alkatrész neve</label>
                         <div class="col-xs-6">
                             <input type="text" class="form-control" id="title" name="title" placeholder="Alkatrész neve(char, num, space, min:3 chars)" 
- +                                    value="{{ todo.title }}" pattern="^([a-zA-Z0-9]).*([a-zA-Z0-9 ])[\w ]{3,255}" required>
+                                     value="{{ todo.title }}" pattern="^([a-zA-Z0-9]).*([a-zA-Z0-9 ])[\w ]{3,255}" required>
                         </div>
                     </div>
                     <div class="form-group">
-                    <label for="category_id" class="col-xs-3 control-label">Category</label>
+                    <label for="category_id" class="col-xs-3 control-label">Kategória</label>
                         <div class="col-xs-6">
                             <select class="form-control" id="category_id" name="category_id">
                             {% for category in categories %}
                                 
                                 <option value="{{ category.id }}" 
-                                        {% if category.id == old('category_id') %} selected {% endif %}>
-                                    {{ category.name }}</option>
-                                
+                                    {% if category.id == old('category_id') %}
+                                         selected
+                                    {% endif %} > {{ category.name }}
+                                </option>
+
                             {% endfor %}
                             </select>
                         </div>
@@ -38,11 +40,20 @@
                             <a href="/alk"><button type="button" class="btn btn-default">Vissza</button></a>
                         </div>
                     </div>
+                     <div class="help-block text-center help-block-style"></div>
                 </fieldset>
             </form>
         </div>
         
-        {% endif %}
+        
+        {% if old('errors') %}
+             <ul class="text-center">
+                 {% for error in old('errors') %}
+                 <li style="list-style:none;color:darkred;font-weight:bold">{{ error.message }}</li>
+                 {% endfor %}
+             </ul>
+         {% endif %}
+
         {% endif %}
         </div>
         </div>

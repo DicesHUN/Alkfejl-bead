@@ -58,7 +58,7 @@ class AlkController {
         }
         
         const category = yield Category.create(categoryData);
-        response.redirect('/alk');
+        response.redirect('back');
     }
 
     * edit(request,response){
@@ -153,7 +153,7 @@ class AlkController {
     * getParts(request, response){
         const id = request.param('id');
         const category = yield Category.find(id);
-        const todos = yield category.todos().fetch();
+        const todos = yield category.alks().fetch();
         
         category.allParts = todos.toJSON()
 
@@ -238,7 +238,7 @@ class AlkController {
              })
              return
          }
-         response.notFound('Nincs alkatresz');
+         response.notFound('Nincs alkatrész');
    }
  
    * ajaxDeleteCategory(request, response) {
@@ -254,7 +254,7 @@ class AlkController {
              })
              return
          }
-         response.notFound('Nincs alkatresz');
+         response.notFound('Nincs alkatrész');
    }
  
    * ajaxEdit(request,response) {
@@ -304,7 +304,7 @@ class AlkController {
              category_id:'required',
          }
  
-         const validation = yield Validator.validateAll(noteData, rules);
+         const validation = yield Validator.validateAll(todoData, rules);
  
          if(validation.fails()){
              response.ok({

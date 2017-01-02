@@ -12,14 +12,13 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="panel panel-default" id="todosPanel">
                         <div class="panel-heading">{{ category.name }}
-                            <span class="pull-right"></span>
                         </div>
                         <div class="panel-body" style="max-height:150px; min-height:150px; overflow-y: scroll;">
                             {% for todo in category.allTodos %}
                                 
                                 <li style="list-style:none;" class="smart-todo">{{ todo.title }}
                                             <span class="pull-right"><a href="/editAlk/{{todo.id}}"  class="smart-todo"><i class="glyphicon glyphicon-pencil" style="color:blue" style="padding-left:10px"></i></a>
-                                            <a href="/deleteAlk/{{todo.id}}" id="deleteTodo{{todo.id}}" onclick="deleteTodo({{todo.id}})"><i class="glyphicon glyphicon-trash" style="padding-left:10px;"></i></a></span>
+                                            <a href="/deleteAlk/{{todo.id}}" id="deleteAlk{{todo.id}}" onclick="deleteAlk({{todo.id}})"><i class="glyphicon glyphicon-trash" style="padding-left:10px;"></i></a></span>
                                 </li>
                                 
                             {% endfor %}
@@ -27,9 +26,9 @@
                         <div class="panel-footer">
 
 
-                            <a href="/deleteCategory/{{category.id}}" id="deleteCategory{{category.id}}" onclick="deleteCategory({{category.id}})" class="btn btn-danger">Kategória törlése<i class="glyphicon glyphicon-trash" style="padding-left:10px"></i></a>
+                            <a href="/deleteCategory/{{category.id}}" id="deleteCategory{{category.id}}" onclick="deleteCategory({{category.id}})" class="btn btn-danger">Kategória törlése<i style="padding-left:10px"></i></a>
                               <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#editCategory">Kategórianév módosítása
-                                  <i class="glyphicon glyphicon-pencil" style="padding-left:10px"></i>
+                                  <i style="padding-left:10px"></i>
                               </button>
 
                             <div class="modal fade" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="editCategoryLabel">
@@ -66,7 +65,7 @@
                      <div class="modal-dialog modal-sm" role="document">
                          <div class="modal-content">
                          <div class="modal-body">
-                             Biztosan törölni fogod?
+                             Biztosan törölni szeretné?
                          </div>
                          <div class="modal-footer">
                              <button type="button" class="btn btn-success modal-ok" data-dismiss="modal">OK</button>

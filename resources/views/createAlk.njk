@@ -52,10 +52,10 @@
                         <div class="col-xs-6">
                             <select class="form-control" id="category_id" name="category_id" required>
                             {% for category in categories %}
-                                {% if category.user_id == currentUser.id %}
+                                
                                 <option value="{{ category.id }}" {% if category.id == old('category_id') %} selected {% endif %} >
-                                    {{ category.name}}</option>
-                                {% endif %}  
+                                     {{ category.name}}</option>
+                            
                             {% endfor %}
                             </select>
                         </div>
@@ -67,6 +67,7 @@
                         </div>
                     </div>
                 </fieldset>
+                <div class="help-block text-center help-block-style"></div>
             </form>
         </div>
         {% endif %}

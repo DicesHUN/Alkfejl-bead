@@ -1,6 +1,6 @@
-function deleteTodo(id){
+function deleteAlk(id){
      this.event.preventDefault();
-     const $todoToDelete = $('#deleteTodo'+id);
+     const $todoToDelete = $('#deleteAlk'+id);
      console.log($todoToDelete);
      deleteItem($todoToDelete);
  }
@@ -11,23 +11,7 @@ function deleteTodo(id){
      deleteItem($categoryToDelete);
  }
  
- function deleteItem(item){
-     confirmDelete('Are you sure you want to delete the item?')
-         .then(response => {
-             if(response){
-             const url = '/ajax' + item.attr('href');
-             ajaxDelete(url)
-                 .then(data =>{
-                     location.reload()
-                 })
-                 .catch(xhr =>{
-                    $('.help-block').text(xhr.responeText);
-                 })
-             }
-         })
- }
- 
- function editTodo(id) {
+ function editAlk(id) {
      const $title = $('#title');
      const $category_id = $('#category_id');
      var data = {};
@@ -35,24 +19,24 @@ function deleteTodo(id){
      data.category_id = $category_id.val().trim();
      data.id = id;
      if(data.title.length > 2 && data.category_id.length > 0){
-         editCreateItem(id,'editTodo','/todos', data)
+         editCreateItem(id,'editAlk','/alk', data)
      }else{
          this.event.preventDefault();
-        $('.help-block').text('Title or category is empty, or you have not typed enough characters');
+        $('.help-block').text('A kategória vagy alkatrész valószínűleg üres, vagy nem írt be elegendő karaktert');
     }
 }
 
-function createTodo(){
+function createAlk(){
      const $title = $('#title');
      const $category_id = $('#category_id')
      var data = {};
      data.title = $title.val().trim();
      data.category_id = $category_id.val().trim();
      if(data.title.length > 2 && data.category_id.length > 0){
-         createItem('createTodo','/todos', data)
+         createItem('createAlk','/alk', data)
      }else{
          this.event.preventDefault();
-         $('.help-block').text('Title or category is empty, or you have not typed enough characters');
+         $('.help-block').text('A kategória vagy alkatrész valószínűleg üres, vagy nem írt be elegendő karaktert');
      }
  }
  
@@ -94,6 +78,22 @@ function createTodo(){
              console.log('text status: '+textStatus+', err: '+err)
          }
      });
+ }
+
+ function deleteItem(item){
+     confirmDelete('Biztosan törölni fogja?')
+         .then(response => {
+             if(response){
+             const url = '/ajax' + item.attr('href');
+             ajaxDelete(url)
+                 .then(data =>{
+                     location.reload()
+                 })
+                 .catch(xhr =>{
+                    $('.help-block').text(xhr.responeText);
+                 })
+             }
+         })
  }
  
  
