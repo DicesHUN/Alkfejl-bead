@@ -145,7 +145,7 @@
           + (ennek almenüje: ) Alkatrész Hozzáadása
       + Saját összeállítás 
   + 8. Ezen kívül van keresés funkciónk, és a jobb felső sarokban található a kijelentkezés/bejelentkezés gomb.
-+ **Funkciók**
+#### Funkciók
   +   1.) Az Alkatrészek oldalon található kategóriákat egyből törölni is tudjuk a Kategória törlése gombbal.
   +   2.) Ugyan ezen az oldalon a kategóriánkénti alkatrészeket is törölni, de akár módosítani is tudjuk azok nevének és kategórájának megváltoztatásával.
   +   3.) Szintén ugyan ezen az oldalon a Kategórianév módosítása gombra kattintva megváltoztathatjuk a Kategória nevét
