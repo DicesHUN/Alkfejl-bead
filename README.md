@@ -158,9 +158,32 @@
   +   7.) A Saj. össz. oldalon tudunk törölni a kis kuka ikonnal alkatrészeket, amik többé nem illenek az összeállításunkba.
   +   8.) A  keresősávba írva megalálhatjuk az általunk keresett alkatrészt, ám ha üresen kattintunk a keresés gombra, akkor az összes alkatrészt megmutatja nekünk a kereső.
   +   9.) Ha végeztünk a böngészéssel, akkor a jobb felső sarokban található kijelentkezés gombbal kijelentkezhetünk az oldalról.
+  
+  
+## 5. Selenium IDE tesztelések
 
+  +   **Telepítés/használat**
+  
+    +   Először is telepítenünk kell a Selenium IDE firefox plug-in -t.
+    +   Miután ezt megtettük, nyissuk meg a Selenium IDE-t.
+    +   Nyissuk meg a teszteseteket, amelyeket a "Selenium test" mappában találunk
+    +   A 2. kis zöld lejátszás gombra kattintva egyesével futtathatjuk a kiválasztott automata teszteseteket.
+    +   Miután lefutott lépjünk a következő tesztesetre és futtassuk, és így tovább, míg véget nem ért az összes.
+    
+  +   **Tesztesetek**
+  
+    +   Először a regisztráció tesztelése: 
+      +   Egy random névvel, e-mail címmel, és jelszóval elláttam a kitöltendő mezőket és létrehoztam a felhasználót.
+    
+    +   Utána az éppen létrehozott felhasználóval: 
+      +   eléptem, majd az alkatrészek kategóriájához adtam egy új kategóriát, abba mindjárt egy új alkatrészt.
+      +   Utána a Saját összeállítás oldalon feltöltöttem a kategóriákat alkatrészekkel, majd cseréltem új alkatrészeket, és kidobtam a             régebben kiválasztottakat.
+      +   Ezután kijelentkeztem.
+    
+    +   A beadandó írása alatt is használt felhasználóval belépek, módosítgatok az alkatrészeken, majd a saját összeállításoko, és                kilépek. 
+    +   Hasonlóan belépek egy felhasználóval és módosításokat végzek.
 
-## 5. Irodalomjegyzék
+## 6. Irodalomjegyzék
 
   + http://webprogramozas.inf.elte.hu/alkfejl.
   
